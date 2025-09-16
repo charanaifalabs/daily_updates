@@ -1,0 +1,176 @@
+@use "sass:color";
+@use "variables" as *;
+
+.product-section {
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: $dark-gray;
+    }
+
+    button {
+      background: $primary;
+      color: $white;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: $border-radius;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: color.adjust($primary, $lightness: -10%);
+      }
+    }
+  }
+
+  // Filters Section
+  .filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+
+    input {
+      padding: 0.5rem 1rem;
+      border: 1px solid #110f0f;
+      border-radius: $border-radius;
+      font-size: 0.9rem;
+      width: 150px;
+      background-color: white;
+      color: black;
+
+      &:focus {
+        outline: none;
+        border-color: $primary;
+      }
+    }
+
+    button {
+      background: $primary;
+      color: $white;
+      border: none;
+      border-radius: $border-radius;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: color.adjust($primary, $lightness: -10%);
+      }
+    }
+  }
+
+  .product-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+
+    align-content: space-evenly;
+
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .product-card {
+    background: $white;
+    border: 5px solid #eee;
+    border-radius: $border-radius;
+    padding: 1rem;
+    box-shadow: $shadow;
+    transition: transform 0.2s ease;
+    width: 300px;
+    height: 220px;
+    font-weight: bold;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: $dark-gray;
+    }
+
+    p {
+      color: gray;
+      margin-bottom: 1rem;
+    }
+
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+
+      button {
+        padding: 0.4rem 0.8rem;
+        border: none;
+        border-radius: $border-radius;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: background 0.3s ease;
+        white-space: nowrap;
+
+        &:first-child {
+          background: $primary;
+          color: $white;
+
+          &:hover {
+            background: color.adjust($primary, $lightness: -10%);
+          }
+        }
+
+        &:last-child {
+          background: $danger;
+          color: $white;
+
+          &:hover {
+            background: color.adjust($danger, $lightness: -10%);
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+
+  button {
+    border: 1px solid #ddd;
+    padding: 0.5rem 1rem;
+    border-radius: $border-radius;
+    cursor: pointer;
+    background: $white;
+    color: black;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: $light-gray;
+    }
+
+    &.active {
+      background: $primary;
+      color: $white;
+      border-color: $primary;
+    }
+  }
+}
