@@ -1,1 +1,0 @@
-export type todo = { _id: string;title: string; description: string; completed: boolean }
