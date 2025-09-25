@@ -38,7 +38,7 @@ const todoSlice = createSlice({
     },
 
     // --- Add
-    // ✅ expects a string payload (title)
+
     addTodoRequest: (state, action: PayloadAction<string>) => {
       state.loading = true;
       state.error = null;
@@ -55,7 +55,7 @@ const todoSlice = createSlice({
     },
 
     // --- Update
-    // ✅ expects full Todo object as payload
+
     updateTodoRequest: (state, _action: PayloadAction<Todo>) => {
       state.loading = true;
       state.error = null;
@@ -72,7 +72,7 @@ const todoSlice = createSlice({
     },
 
     // --- Delete
-    // ✅ expects todoId as string
+
     deleteTodoRequest: (state, _action: PayloadAction<string>) => {
       state.loading = true;
       state.error = null;
