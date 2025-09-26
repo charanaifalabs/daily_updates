@@ -8,6 +8,28 @@ import UserDashboard from "./pages/UserDashboard";
 import BooksPage from "./pages/BooksPage";
 import Otp from "./pages/Otp";
 
+interface ProtectedRouteProps {
+  element: React.ReactElement;
+  allowedRoles: string[];
+}
+
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
+  element,
+  allowedRoles,
+}) => {
+  const user = JSON.parse(localStorage.getItem("user") || "null");
+
+  if (!user) {
+    return <Navigate to="/login" replace />;
+  }
+
+  if (!allowedRoles.includes(user.role)) {
+    return <Navigate to="/unauthorized" replace />;
+  }
+
+  return element;
+};
+
 const App: React.FC = () => {
   return (
     <BrowserRouter>
@@ -20,15 +42,47 @@ const App: React.FC = () => {
         {/* OTP page */}
         <Route path="/otp" element={<Otp />} />
 
-        {/* Dashboards - no protection */}
-        <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/librarian" element={<LibrarianDashboard />} />
-        <Route path="/user" element={<UserDashboard />} />
+        {/*  Protected Dashboards */}
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute
+              element={<AdminDashboard />}
+              allowedRoles={["admin"]}
+            />
+          }
+        />
+        <Route
+          path="/librarian"
+          element={
+            <ProtectedRoute
+              element={<LibrarianDashboard />}
+              allowedRoles={["librarian"]}
+            />
+          }
+        />
+        <Route
+          path="/user"
+          element={
+            <ProtectedRoute
+              element={<UserDashboard />}
+              allowedRoles={["user"]}
+            />
+          }
+        />
 
-        {/* Books page - accessible to all */}
-        <Route path="/books" element={<BooksPage />} />
+        {/* Books page → accessible to all logged-in users */}
+        <Route
+          path="/books"
+          element={
+            <ProtectedRoute
+              element={<BooksPage />}
+              allowedRoles={["admin", "librarian", "user"]}
+            />
+          }
+        />
 
-        {/* Unauthorized fallback (can remove if not needed) */}
+        {/* Unauthorized fallback */}
         <Route
           path="/unauthorized"
           element={<div style={{ padding: 40 }}>Unauthorized</div>}

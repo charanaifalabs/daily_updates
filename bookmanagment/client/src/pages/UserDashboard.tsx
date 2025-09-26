@@ -155,15 +155,15 @@ const UserDashboard: React.FC = () => {
             variant="outlined"
             size="small"
             sx={{ mb: 2 }}
-            value={searchTerm} // from useBookSearch hook
-            onChange={(e) => setSearchTerm(e.target.value)} // update search term
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
           />
 
           {loading ? (
             <Typography variant="body2" color="text.secondary" sx={{ p: 2 }}>
               Loading books...
             </Typography>
-          ) : filteredBooks.length > 0 ? ( // use filteredAllBooks instead of allBooks
+          ) : filteredBooks.length > 0 ? (
             <Box
               sx={{
                 display: "grid",

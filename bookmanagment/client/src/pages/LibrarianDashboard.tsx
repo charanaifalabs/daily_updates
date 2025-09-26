@@ -200,7 +200,9 @@ const LibrarianDashboard: React.FC = () => {
           My Book Requests ({requests?.length || 0})
         </Typography>
 
-        <Box sx={{ display: "grid", gap: 2, mb: 3 }}>
+        <Box sx={{ display: "grid", gap: 2, mb: 3 , borderRadius: "5px",
+            cursor: "pointer",
+            "&:hover": { boxShadow: 6 }}}>
           {requests && requests.length > 0 ? (
             requests.map((r) => (
               <Box

@@ -114,12 +114,21 @@ const AdminDashboard: React.FC = () => {
 
         {/* Requests Panel */}
         <Typography variant="h5" sx={{ mb: 1, mt: 2, color: "primary.main" }}>
-           Librarian Requests ({requests?.length || 0})
+          Librarian Requests ({requests?.length || 0})
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
           Review and approve/reject librarian requests for book changes
         </Typography>
-        <Box sx={{ display: "grid", gap: 2, mb: 3 }}>
+        <Box
+          sx={{
+            display: "grid",
+            gap: 2,
+            mb: 3,
+            borderRadius: "5px",
+            cursor: "pointer",
+            "&:hover": { boxShadow: 6 },
+          }}
+        >
           {requests && requests.length > 0 ? (
             requests.map((r) => (
               <Box
